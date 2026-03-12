@@ -237,9 +237,15 @@ Please let me know if you need any assistance accessing your content.`;
         const video = await VideoService.getVideo(videoId);
         
         if (video) {
-          // Add video immediately to both arrays
-          setLoadedVideos(prev => [...prev, video]);
-          setVideos(prev => [...prev, video]);
+          // Add video immediately to both arrays, check for duplicates
+          setLoadedVideos(prev => {
+            if (prev.some(v => v.$id === video.$id)) return prev;
+            return [...prev, video];
+          });
+          setVideos(prev => {
+            if (prev.some(v => v.$id === video.$id)) return prev;
+            return [...prev, video];
+          });
         }
         
         // Add a small delay between videos (except for the first one)
