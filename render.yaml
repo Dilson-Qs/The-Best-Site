@@ -3,7 +3,7 @@ services:
     name: videosplus
     env: node
     plan: free
-    buildCommand: npm ci && npm run build:render
+    buildCommand: npm install && npm run build:render
     startCommand: npm start
     healthCheckPath: /api
     envVars:
