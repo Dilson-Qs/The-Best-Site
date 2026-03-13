@@ -11,15 +11,9 @@ const __dirname = path.dirname(__filename);
 console.log('🚀 Starting build process...');
 
 try {
-  // Remove dist directory if it exists
-  if (fs.existsSync('dist')) {
-    console.log('🧹 Cleaning dist directory...');
-    if (process.platform === 'win32') {
-      execSync('rmdir /s /q dist', { stdio: 'inherit' });
-    } else {
-      execSync('rm -rf dist', { stdio: 'inherit' });
-    }
-  }
+  // Note: We don't manually remove the 'dist' directory anymore
+  // because Vite handles it automatically via the `emptyOutDir` config
+  // and manual deletion causes EBUSY errors in Linux/Docker containers.
 
   // Run vite build
   console.log('📦 Building with Vite...');
