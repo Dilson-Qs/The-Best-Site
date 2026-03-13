@@ -10,6 +10,12 @@ const isDev = import.meta.env.DEV;
 
 // Função para detectar automaticamente a URL da API baseada no domínio atual
 const getApiBaseUrl = () => {
+  // Se VITE_API_URL estiver configurado, use ele primeiro (inclusive em DEV no Lovable)
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Apenas faça fallback para localhost:3000 se for DEV E não houver URL customizado
   if (isDev) {
     return 'http://localhost:3000';
   }

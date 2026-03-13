@@ -165,7 +165,7 @@ class WasabiMetadataService {
       const blob = new Blob([jsonData], { type: 'application/json' });
       formData.append('file', blob, 'videosplus-data.json');
       
-      const baseUrl = import.meta.env.DEV ? 'http://localhost:3000' : '';
+      const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3000' : '');
       const response = await fetch(`${baseUrl}/api/upload/metadata`, {
         method: 'POST',
         body: formData
